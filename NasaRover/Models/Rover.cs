@@ -22,8 +22,6 @@ namespace NasaRover.Models
         /// <param name="commands">One or more commands.</param>
         public void Move(params Command[] commands)
         {
-            Position newPosition = new Position();
-
             // Move the rover.
             foreach (Command command in commands)
             {
@@ -57,9 +55,6 @@ namespace NasaRover.Models
                         throw new ArgumentOutOfRangeException(nameof(commands));
                 }
             }
-
-            // Set the new position of the rover.
-            SetPosition(newPosition);
         }
     }
 }
