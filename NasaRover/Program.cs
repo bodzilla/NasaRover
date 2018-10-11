@@ -23,13 +23,13 @@ namespace NasaRover
             rover.SetPosition(position);
 
             // Display the current position of the rover.
-            Console.WriteLine($"Current position: {rover.CurrentPosition}");
+            Console.WriteLine($"Current position:{Environment.NewLine}{rover.CurrentPosition}");
 
             // Send commands to the rover.
             rover.Move(Command.Left, Command.Move, Command.Right);
 
             // Display the new position of the rover.
-            Console.WriteLine($"New position: {rover.CurrentPosition}");
+            Console.WriteLine($"New position:{Environment.NewLine}{rover.CurrentPosition}");
         }
     }
 }

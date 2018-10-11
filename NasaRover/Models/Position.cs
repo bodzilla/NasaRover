@@ -1,4 +1,5 @@
-﻿using NasaRover.Enums;
+﻿using System;
+using NasaRover.Enums;
 
 namespace NasaRover.Models
 {
@@ -18,5 +19,12 @@ namespace NasaRover.Models
         /// Direction that the rover is facing.
         /// </summary>
         public Direction Direction { get; set; }
+
+        public override string ToString()
+        {
+            return $"X: {X}{Environment.NewLine}" +
+                   $"Y: {Y}{Environment.NewLine}" +
+                   $"Direction: {Direction}";
+        }
     }
 }
