@@ -28,32 +28,104 @@ namespace NasaRover.Models
                 switch (command)
                 {
                     case Command.Move:
-                        if (CurrentPosition.Direction == Direction.North)
-                        {
-                            CurrentPosition.Y++;
-                        }
-                        else if (CurrentPosition.Direction == Direction.East)
-                        {
-                            CurrentPosition.X++;
-                        }
-                        else if (CurrentPosition.Direction == Direction.South)
-                        {
-                            CurrentPosition.Y--;
-                        }
-                        else if (CurrentPosition.Direction == Direction.West)
-                        {
-                            CurrentPosition.X--;
-                        }
+                        EvaluateMove();
                         break;
+
                     case Command.Left:
-                        //TODO
+                        TurnLeft();
                         break;
+
                     case Command.Right:
-                        //TODO
+                        TurnRight();
                         break;
+
                     default:
                         throw new ArgumentOutOfRangeException(nameof(commands));
                 }
+            }
+        }
+
+        /// <summary>
+        /// Evaluates direction, then turns rover relatively left.
+        /// </summary>
+        private void TurnLeft()
+        {
+            switch (CurrentPosition.Direction)
+            {
+                case Direction.North:
+                    CurrentPosition.Direction = Direction.West;
+                    break;
+
+                case Direction.East:
+                    CurrentPosition.Direction = Direction.North;
+                    break;
+
+                case Direction.South:
+                    CurrentPosition.Direction = Direction.East;
+                    break;
+
+                case Direction.West:
+                    CurrentPosition.Direction = Direction.South;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(CurrentPosition.Direction));
+            }
+        }
+
+        /// <summary>
+        /// Evaluates direction, then turns rover relatively right.
+        /// </summary>
+        private void TurnRight()
+        {
+            switch (CurrentPosition.Direction)
+            {
+                case Direction.North:
+                    CurrentPosition.Direction = Direction.East;
+                    break;
+
+                case Direction.East:
+                    CurrentPosition.Direction = Direction.South;
+                    break;
+
+                case Direction.South:
+                    CurrentPosition.Direction = Direction.West;
+                    break;
+
+                case Direction.West:
+                    CurrentPosition.Direction = Direction.North;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(CurrentPosition.Direction));
+            }
+        }
+
+        /// <summary>
+        /// Evaluates the rover's direction, then moves rover accordingly.
+        /// </summary>
+        private void EvaluateMove()
+        {
+            switch (CurrentPosition.Direction)
+            {
+                case Direction.North:
+                    CurrentPosition.Y++;
+                    break;
+
+                case Direction.East:
+                    CurrentPosition.X++;
+                    break;
+
+                case Direction.South:
+                    CurrentPosition.Y--;
+                    break;
+
+                case Direction.West:
+                    CurrentPosition.X--;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(CurrentPosition.Direction));
             }
         }
     }
