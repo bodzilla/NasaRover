@@ -24,7 +24,7 @@ namespace NasaRover
             Console.WriteLine($"Current position:{Environment.NewLine}{rover.CurrentPosition}");
 
             // Send commands to the rover.
-            rover.Move(
+            rover.ExecuteCommands(
                 Command.Left, Command.Move,
                 Command.Left, Command.Move,
                 Command.Left, Command.Move,

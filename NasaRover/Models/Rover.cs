@@ -11,18 +11,17 @@ namespace NasaRover.Models
         public Position CurrentPosition { get; set; }
 
         /// <summary>
-        /// Moves the rover according to the given command.
+        /// Actions the rover according to the given command.
         /// </summary>
         /// <param name="commands">One or more commands.</param>
-        public void Move(params Command[] commands)
+        public void ExecuteCommands(params Command[] commands)
         {
-            // Move the rover.
             foreach (Command command in commands)
             {
                 switch (command)
                 {
                     case Command.Move:
-                        EvaluateMove();
+                        Move();
                         break;
 
                     case Command.Left:
@@ -78,7 +77,7 @@ namespace NasaRover.Models
         /// <summary>
         /// Evaluates the rover's direction, then moves rover accordingly.
         /// </summary>
-        private void EvaluateMove()
+        private void Move()
         {
             switch (CurrentPosition.Direction)
             {
