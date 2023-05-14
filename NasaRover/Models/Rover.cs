@@ -44,7 +44,7 @@ namespace NasaRover.Models
             foreach (var command in commands)
             {
                 if (!CommandStrategies.TryGetValue(command, out var commandStrategy))
-                    throw new ArgumentException($"Invalid command: {command}", nameof(commands));
+                    throw new ArgumentException($"No command strategy exists for: {command}", nameof(commands));
 
                 commandStrategy(this);
             }
@@ -53,7 +53,7 @@ namespace NasaRover.Models
         private void Turn(Command turnCommand)
         {
             if (!DirectionStrategies.TryGetValue((CurrentPosition.Direction, turnCommand), out var newDirection))
-                throw new ArgumentException($"Invalid turn command: {turnCommand} for current direction: {CurrentPosition.Direction}", nameof(turnCommand));
+                throw new ArgumentException($"No turn strategy exists for: {turnCommand} at direction: {CurrentPosition.Direction}", nameof(turnCommand));
 
             CurrentPosition.Direction = newDirection;
         }
@@ -61,7 +61,7 @@ namespace NasaRover.Models
         private void Move()
         {
             if (!MoveStrategies.TryGetValue(CurrentPosition.Direction, out var moveStrategy))
-                throw new ArgumentException($"Invalid move command: {CurrentPosition.Direction}", nameof(CurrentPosition.Direction));
+                throw new ArgumentException($"No move strategy exists for: {CurrentPosition.Direction}", nameof(CurrentPosition.Direction));
 
             moveStrategy(CurrentPosition);
         }
